@@ -120,7 +120,7 @@ main(void)
     cleanup_memory(simulation_run);
   }
 
-  getchar();   /* Pause before finishing. */
+  // getchar();   /* Pause before finishing. */
   return 0;
 }
 

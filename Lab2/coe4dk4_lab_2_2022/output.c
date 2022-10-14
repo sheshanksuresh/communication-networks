@@ -77,6 +77,10 @@ output_results(Simulation_Run_Ptr simulation_run)
 
   data = (Simulation_Run_Data_Ptr) simulation_run_data(simulation_run);
 
+  FILE *f;
+  f = fopen("./outputs/output_part2.csv", "a");
+  // fprintf(f, "Random Number Seed, Packet arrival count, Transmitted packet count, Arrival Rate, Mean delay\n");
+
   printf("\n");
   printf("Random Seed = %d \n", data->random_seed);
   printf("Packet arrival count = %ld \n", data->arrival_count);
@@ -89,9 +93,11 @@ output_results(Simulation_Run_Ptr simulation_run)
 
   printf("Arrival rate = %.3f packets/second \n", (double) PACKET_ARRIVAL_RATE);
 
-  printf("Mean Delay (msec) = %.2f \n",
+  printf("Mean Delay (msec) = %f \n",
 	 1e3*data->accumulated_delay/data->number_of_packets_processed);
 
+  fprintf(f, "%d, %ld, %f, %f\n", data->random_seed, data->number_of_packets_processed, (double) PACKET_ARRIVAL_RATE, 1e3*data->accumulated_delay/data->number_of_packets_processed);
+  fclose(f);
   printf("\n");
 }
 
