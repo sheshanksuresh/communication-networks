@@ -66,6 +66,7 @@ end_packet_transmission_event(Simulation_Run_Ptr simulation_run, void * link)
 {
   Simulation_Run_Data_Ptr data;
   Packet_Ptr this_packet, next_packet;
+  double pkt_delay;
 
   TRACE(printf("End Of Packet.\n"););
 
@@ -78,6 +79,12 @@ end_packet_transmission_event(Simulation_Run_Ptr simulation_run, void * link)
   this_packet = (Packet_Ptr) server_get(link);
 
   /* Collect statistics. */
+  pkt_delay = simulation_run_get_time(simulation_run) - this_packet->arrive_time;
+  if (pkt_delay > 0.02)
+  {
+    data->delay_count++;
+  }
+  
   data->number_of_packets_processed++;
   data->accumulated_delay += simulation_run_get_time(simulation_run) - 
     this_packet->arrive_time;
