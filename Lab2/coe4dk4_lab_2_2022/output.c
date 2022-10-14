@@ -78,7 +78,7 @@ output_results(Simulation_Run_Ptr simulation_run)
   data = (Simulation_Run_Data_Ptr) simulation_run_data(simulation_run);
 
   FILE *f;
-  f = fopen("./outputs/output_part2.csv", "a");
+  f = fopen("./outputs/output_part4.csv", "a");
   // fprintf(f, "Random Number Seed, Packet arrival count, Transmitted packet count, Arrival Rate, Mean delay\n");
 
   printf("\n");
